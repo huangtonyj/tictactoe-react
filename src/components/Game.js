@@ -52,15 +52,16 @@ export default class Game extends Component {
 
   render() {
 
-    const winMessage = this.state.winner ? `Player ${this.state.winner} WON!` : ''
-
+    const Message = this.state.winner ? 
+      `Player ${this.state.winner} WON!` 
+      : 
+      `Player ${this.state.turn}'s turn!`
+   
     return (
       <div className="Game"> 
         <h1>Tic Tac Toe</h1>
 
-        {winMessage}
-
-        <h3>Player {this.state.turn}'s turn</h3>
+        <h3>{Message}</h3>
 
         <Board
           board={this.state.board}
