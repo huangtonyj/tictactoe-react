@@ -16,6 +16,7 @@ export default class Game extends Component {
   }
 
   onSquareClick = (squareIdx) => {  
+    const board = this.state.board;
     if (board[squareIdx]) {
       alert('Square already taken')
       return;
@@ -23,7 +24,6 @@ export default class Game extends Component {
     
     if (this.state.winner) { return ;} // Game over
     
-    const board = this.state.board;
     board[squareIdx] = this.state.turn
     
     const turn = this.state.turn === 'X' ? 'O' : 'X';
@@ -55,7 +55,7 @@ export default class Game extends Component {
     const winMessage = this.state.winner ? `Player ${this.state.winner} WON!` : ''
 
     return (
-      <div> 
+      <div className="Game"> 
         <h1>Tic Tac Toe</h1>
 
         {winMessage}
