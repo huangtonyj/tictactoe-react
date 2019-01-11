@@ -16,6 +16,13 @@ export default class Game extends Component {
   }
 
   onSquareClick = (squareIdx) => {  
+    if (board[squareIdx]) {
+      alert('Square already taken')
+      return;
+    }
+    
+    if (this.state.winner) { return ;} // Game over
+    
     const board = this.state.board;
     board[squareIdx] = this.state.turn
     
@@ -35,7 +42,6 @@ export default class Game extends Component {
       [0,4,8],
       [2,4,6],
     ];
-    console.log(WINARRAY);
     
     WINARRAY.forEach((w) => {
       if (w.every(s => this.state.board[s] === this.state.turn)) {
@@ -45,11 +51,14 @@ export default class Game extends Component {
   }
 
   render() {
+
+    const winMessage = this.state.winner ? `Player ${this.state.winner} WON!` : ''
+
     return (
       <div> 
         <h1>Tic Tac Toe</h1>
 
-        {this.state.winner}
+        {winMessage}
 
         <h3>Player {this.state.turn}'s turn</h3>
 
